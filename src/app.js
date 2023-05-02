@@ -16,12 +16,13 @@ import productManager from "./ProductManager.js";
 
          let allProds = await prodManager.getProducts();
 
-        let LimitProducts = parseInt(req.query.limit);
+        let LimitProducts = req.query.limit;
 
             if (LimitProducts > 0 ) {
 
-                    ProdsFiltered = await allProds.slice(0, LimitProducts)
-                    await res.send(ProdsFiltered)
+                     let ProdsFiltered = await allProds.slice(0, LimitProducts)
+                    
+                     await res.send(ProdsFiltered)
             }else{
 
                     await res.send(allProds)
@@ -32,7 +33,7 @@ import productManager from "./ProductManager.js";
         
     } catch (error) {
 
-        res.send("El error es: ",error);
+        res.send(`El error es: ${error}`);
         
     }
  
